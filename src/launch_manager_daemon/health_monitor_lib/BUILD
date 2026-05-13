@@ -323,6 +323,7 @@ cc_library_with_common_opts(
     includes = [
         "include",
     ],
+    deprecation = "Use //score/mw/lifecycle:alive_cc instead.",
     visibility = ["//visibility:public"],
     deps = [
         ":hm-lib",

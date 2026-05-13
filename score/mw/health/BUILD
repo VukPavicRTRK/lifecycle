@@ -10,19 +10,15 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 # *******************************************************************************
-load("@rules_rust//rust:defs.bzl", "rust_library")
 
 package(default_visibility = ["//visibility:public"])
 
-rust_library(
-    name = "lifecycle_client_rs",
-    srcs = [
-        "src/lib.rs",
-        "src/lifecycle.rs",
-    ],
-    deprecation = "Use //score/mw/lifecycle:lifecycle_rust instead.",
-    deps = [
-        "//src/launch_manager_daemon/lifecycle_client_lib:lifecycle_client",
-        "@score_crates//:libc",
-    ],
+alias(
+    name = "health_monitoring_cc",
+    actual = "//src/health_monitoring_lib:health_monitoring_lib_cc",
+)
+
+alias(
+    name = "health_monitoring_rust",
+    actual = "//src/health_monitoring_lib:health_monitoring_lib",
 )

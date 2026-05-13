@@ -51,6 +51,7 @@ rust_library(
     srcs = glob(["rust/**/*.rs"]),
     crate_root = "rust/lib.rs",
     proc_macro_deps = PROC_MACRO_DEPS,
+    deprecation = "Use //score/mw/health:health_monitoring_rust instead.",
     visibility = ["//visibility:public"],
     deps = COMMON_DEPS,
 )
@@ -61,6 +62,7 @@ cc_library(
     srcs = CC_SOURCES,
     hdrs = CC_HDRS,
     strip_include_prefix = "cpp/include",
+    deprecation = "Use //score/mw/health:health_monitoring_cc instead.",
     visibility = ["//visibility:public"],
     deps = [
         ":health_monitoring_lib_ffi",
