@@ -20,7 +20,6 @@ rust_library(
         "src/lib.rs",
         "src/lifecycle.rs",
     ],
-    deprecation = "Use //score/mw/lifecycle:lifecycle_rust instead.",
     deps = [
         "//src/launch_manager_daemon/lifecycle_client_lib:lifecycle_client",
         "@score_crates//:libc",

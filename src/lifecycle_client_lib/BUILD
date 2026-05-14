@@ -42,7 +42,6 @@ cc_library(
         "@platforms//os:qnx": [],
         "@platforms//os:linux": ["-lpthread"],
     }),
-    deprecation = "Use //score/mw/lifecycle:lifecycle_cc instead.",
     visibility = ["//visibility:public"],
     deps = [
         "//src/launch_manager_daemon/lifecycle_client_lib:lifecycle_client",

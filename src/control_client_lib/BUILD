@@ -23,7 +23,6 @@ cc_library(
         "include/score/lcm/control_client.h",
     ],
     includes = ["include"],
-    deprecation = "Use //score/mw/lifecycle:control_cc instead.",
     visibility = ["//visibility:public"],
     deps = [
         "//src/launch_manager_daemon/common",

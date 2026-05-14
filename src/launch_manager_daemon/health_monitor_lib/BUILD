@@ -277,7 +277,7 @@ cc_library_with_common_opts(
         ":factory",
         ":rb-watchdog-if",
         "//externals/ipc_dropin",
-        "//src/control_client_lib",
+        "//score/mw/lifecycle:control_cc",
         "//src/launch_manager_daemon/lifecycle_client_lib:lifecycle_client",
     ],
 )
@@ -323,7 +323,6 @@ cc_library_with_common_opts(
     includes = [
         "include",
     ],
-    deprecation = "Use //score/mw/lifecycle:alive_cc instead.",
     visibility = ["//visibility:public"],
     deps = [
         ":hm-lib",

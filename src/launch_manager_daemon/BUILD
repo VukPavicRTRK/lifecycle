@@ -40,7 +40,6 @@ cc_binary_with_common_opts(
         "@platforms//os:qnx": ["-lsecpol"],
         "@platforms//os:linux": ["-lpthread"],
     }),
-    deprecation = "Use //score/mw/lifecycle:launch_manager instead.",
     visibility = ["//visibility:public"],
     deps = [
         ":config",
