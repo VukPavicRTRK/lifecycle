@@ -10,8 +10,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 # *******************************************************************************
-load("@rules_cc//cc:defs.bzl", "cc_test")
-load("//config:common_cc.bzl", "cc_binary_with_common_opts", "cc_library_with_common_opts")
+load("//config:common_cc.bzl", "cc_binary_with_common_opts", "cc_library_with_common_opts", "cc_test_with_common_opts")
 
 cc_library(
     name = "identifier_hash",
@@ -106,7 +105,7 @@ cc_library(
     ],
 )
 
-cc_test(
+cc_test_with_common_opts(
     name = "identifier_hash_UT",
     srcs = ["src/identifier_hash_UT.cpp"],
     visibility = ["//tests:__subpackages__"],

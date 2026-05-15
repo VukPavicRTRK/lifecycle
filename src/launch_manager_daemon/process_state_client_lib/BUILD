@@ -10,6 +10,8 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 # *******************************************************************************
+load("//config:common_cc.bzl", "cc_test_with_common_opts")
+
 cc_library(
     name = "process_state_client",
     srcs = [
@@ -61,7 +63,7 @@ cc_library(
     ],
 )
 
-cc_test(
+cc_test_with_common_opts(
     name = "processstateclient_UT",
     srcs = [
         "src/processstateclient_UT.cpp",

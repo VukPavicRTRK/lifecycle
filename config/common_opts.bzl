@@ -10,21 +10,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 # *******************************************************************************
-SANITIZER_CXXOPTS = select({
-    "//config:thread_sanitizer_enabled": ["-fsanitize=thread", "-O0", "-g"],
-    "//config:ub_sanitizer_enabled": ["-fsanitize=undefined", "-O0", "-g"],
-    "//config:address_sanitizer_enabled": [
-        "-fsanitize=address",
-        "-fno-omit-frame-pointer",
-        "-O1",
-        "-g",
-    ],
-    "//conditions:default": [],
-})
 
-SANITIZER_LINKOPTS = select({
-    "//config:thread_sanitizer_enabled": ["-fsanitize=thread"],
-    "//config:ub_sanitizer_enabled": ["-fsanitize-link-c++-runtime", "-fsanitize=undefined"],
-    "//config:address_sanitizer_enabled": ["-fsanitize=address"],
-    "//conditions:default": [],
-})
+# Sanitizer flags are applied globally via quality/sanitizer/sanitizer.bazelrc
+# using --cxxopt / --linkopt, which instruments all C++ targets in the build.
+# These constants are kept as empty lists for backward compatibility with
+# cc_*_with_common_opts wrappers, which pass them through to each target.
+SANITIZER_CXXOPTS = []
+SANITIZER_LINKOPTS = []

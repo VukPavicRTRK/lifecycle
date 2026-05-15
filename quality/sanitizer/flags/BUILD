@@ -1,5 +1,5 @@
 # *******************************************************************************
-# Copyright (c) 2025 Contributors to the Eclipse Foundation
+# Copyright (c) 2026 Contributors to the Eclipse Foundation
 #
 # See the NOTICE file(s) distributed with this work for additional
 # information regarding copyright ownership.
@@ -10,31 +10,18 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 # *******************************************************************************
+
+# Sanitizer flag: set via --define sanitizer=<value> in .bazelrc configs.
+# Valid values: "asan_ubsan_lsan", "tsan"
+
 config_setting(
-    name = "x86_64-linux",
-    define_values = {
-        "config": "x86_64-linux",
-    },
+    name = "asan_ubsan_lsan",
+    define_values = {"sanitizer": "asan_ubsan_lsan"},
+    visibility = ["//:__subpackages__"],
 )
 
 config_setting(
-    name = "x86_64-qnx",
-    define_values = {
-        "config": "x86_64-qnx",
-    },
+    name = "tsan",
+    define_values = {"sanitizer": "tsan"},
+    visibility = ["//:__subpackages__"],
 )
-
-config_setting(
-    name = "build_qnx8",
-    define_values = {
-        "config": "build_qnx8",
-    },
-)
-
-config_setting(
-    name = "host",
-    define_values = {
-        "config": "host",
-    },
-)
-

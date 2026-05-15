@@ -1,0 +1,52 @@
+# *******************************************************************************
+# Copyright (c) 2026 Contributors to the Eclipse Foundation
+#
+# See the NOTICE file(s) distributed with this work for additional
+# information regarding copyright ownership.
+#
+# This program and the accompanying materials are made available under the
+# terms of the Apache License Version 2.0 which is available at
+# https://www.apache.org/licenses/LICENSE-2.0
+#
+# SPDX-License-Identifier: Apache-2.0
+# *******************************************************************************
+name: Test with thread sanitizer
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+  merge_group:
+    types: [checks_requested]
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: tsan-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  build_and_test_tsan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: Setup Bazel
+        uses: bazel-contrib/setup-bazel@0.18.0
+        with:
+          bazelisk-cache: true
+          disk-cache: build_and_test_tsan
+          repository-cache: true
+          cache-save: ${{ github.event_name == 'push' }}
+
+      - name: Bazel info (discover paths)
+        run: |
+          echo "BAZEL_OUTPUT_BASE=$(bazel info output_base)" >> $GITHUB_ENV
+          bazel info
+
+      - name: Run tests with TSan
+        run: |
+          bazel test --lockfile_mode=error --config=x86_64-linux --config=tsan \
+            --test_output=errors \
+            //... --build_tests_only

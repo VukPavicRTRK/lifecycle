@@ -10,6 +10,8 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 # *******************************************************************************
+load("//config:common_cc.bzl", "cc_test_with_common_opts")
+
 cc_library(
     name = "recovery_client",
     srcs = [
@@ -30,7 +32,7 @@ cc_library(
     ],
 )
 
-cc_test(
+cc_test_with_common_opts(
     name = "recovery_client_UT",
     srcs = ["src/recovery_client_UT.cpp"],
     deps = [

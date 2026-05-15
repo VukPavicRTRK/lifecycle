@@ -10,7 +10,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 # *******************************************************************************
-load("//config:common_cc.bzl", "cc_binary_with_common_opts", "cc_library_with_common_opts")
+load("//config:common_cc.bzl", "cc_binary_with_common_opts", "cc_library_with_common_opts", "cc_test_with_common_opts")
 
 filegroup(
     name = "hm_flatcfg_fbs",
@@ -308,7 +308,7 @@ cc_library_with_common_opts(
     ],
 )
 
-cc_test(
+cc_test_with_common_opts(
     name = "Notification_UT",
     srcs = ["src/score/lcm/saf/recovery/Notification_UT.cpp"],
     deps = [

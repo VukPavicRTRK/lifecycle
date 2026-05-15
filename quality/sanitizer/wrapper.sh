@@ -1,5 +1,6 @@
+#!/usr/bin/env bash
 # *******************************************************************************
-# Copyright (c) 2025 Contributors to the Eclipse Foundation
+# Copyright (c) 2026 Contributors to the Eclipse Foundation
 #
 # See the NOTICE file(s) distributed with this work for additional
 # information regarding copyright ownership.
@@ -10,31 +11,12 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 # *******************************************************************************
-config_setting(
-    name = "x86_64-linux",
-    define_values = {
-        "config": "x86_64-linux",
-    },
-)
 
-config_setting(
-    name = "x86_64-qnx",
-    define_values = {
-        "config": "x86_64-qnx",
-    },
-)
-
-config_setting(
-    name = "build_qnx8",
-    define_values = {
-        "config": "build_qnx8",
-    },
-)
-
-config_setting(
-    name = "host",
-    define_values = {
-        "config": "host",
-    },
-)
-
+# Export sanitizer runtime options from the generated env file, then run the
+# test binary.  The IFS trick ensures each line is exported as a separate
+# variable even when values contain spaces.
+IFS='
+'
+# shellcheck disable=SC2046
+export $(cat quality/sanitizer/relative_sanitizer.env)
+"$@"
