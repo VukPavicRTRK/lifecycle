@@ -17,8 +17,7 @@ build:asan_ubsan_lsan --cxxopt=-fsanitize=undefined,address
 build:asan_ubsan_lsan --cxxopt=-fno-omit-frame-pointer
 build:asan_ubsan_lsan --cxxopt=-fno-common
 build:asan_ubsan_lsan --cxxopt=-O1
-build:asan_ubsan_lsan --cxxopt=-gline-tables-only
-build:asan_ubsan_lsan --cxxopt=-gcolumn-info
+build:asan_ubsan_lsan --cxxopt=-g
 build:asan_ubsan_lsan --strip=never
 build:asan_ubsan_lsan --linkopt=-fsanitize=undefined,address
 test:asan_ubsan_lsan --run_under=//quality/sanitizer:wrapper
@@ -33,8 +32,8 @@ build:tsan --define sanitizer=tsan
 build:tsan --cxxopt=-fsanitize=thread
 build:tsan --cxxopt=-fno-omit-frame-pointer
 build:tsan --cxxopt=-O1
-build:tsan --cxxopt=-gline-tables-only
-build:tsan --cxxopt=-gcolumn-info
+build:tsan --cxxopt=-g
 build:tsan --strip=never
 build:tsan --linkopt=-fsanitize=thread
+build:tsan --linkopt=-static-libtsan
 test:tsan --run_under=//quality/sanitizer:wrapper

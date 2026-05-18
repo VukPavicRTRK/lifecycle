@@ -37,4 +37,3 @@ config_setting(
         "config": "host",
     },
 )
-

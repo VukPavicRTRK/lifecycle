@@ -26,3 +26,10 @@ race:std::ios_base::Init
 # races are false positives in infrastructure code, not in production logic.
 race:std::sync::mpmc::list
 race:test::run_test
+
+# Rust's std::io::stdout() uses a Once-guarded lazy initialization for its
+# internal line-writer buffer.  The Once cell provides the required
+# happens-before relationship, but TSan cannot observe it because the Rust
+# standard library is not instrumented.  Suppress the false-positive data
+# race on the LineWriterShim buffer.
+race:std::io::buffered::linewritershim
